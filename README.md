@@ -1,4 +1,4 @@
-# hockey-heatmap
+# pHpOCKEY
 Making *heatmaps* for ice hockey stats using PHP
 
 ## Usage
