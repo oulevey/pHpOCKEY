@@ -15,4 +15,6 @@ Making *heatmaps* for ice hockey stats using PHP
 - --help				Shows this message and quits.
 - --version		Prints application version.	
 
+When the application has run you can navigate to the export folder you’ve specified and open the generated image file and/or build.scad.
+
 Special thanks to lautr3k for his great help !
