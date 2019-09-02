@@ -9,7 +9,9 @@ Making *heatmaps* for ice hockey stats using PHP
 - output			Directory where the heatmaps will be saved.
 
 ## Options
-- —png				Produces a PNG heatmap.
-- —scad			Builds an OpenSCAD heatmap.
-- —help			Shows this message and quits.
-- —version	Prints application version.	
+- --png				Produces a PNG heatmap.
+- --scad			Builds an OpenSCAD heatmap.
+- --help			Shows this message and quits.
+- --version	Prints application version.	
+
+Special thanks to lautr3k for his great help !
