@@ -88,12 +88,14 @@ function map($value, $from, $to) {
 }
 
 // convert a matrix to PNG file
-function toPNG($path, $matrix, $radius = 42, $modifier = 15) {
-  // background image
+function toPNG($path, $matrix, $radius = 42, $modifier = 15, $cloud_alpha = 42) {
+  // background and palette paths
   $backgroundFile = ROOT_PATH . "/imgs/background.png";
+  $paletteFile    = ROOT_PATH . "/imgs/palette.png";
 
-  // create base image from the background image
+  // create base image from the background and palette image
   $background = imagecreatefrompng($backgroundFile);
+  $palette    = imagecreatefrompng($paletteFile);
 
   // get image size
   $width  = imagesx($background);
@@ -139,12 +141,14 @@ function toPNG($path, $matrix, $radius = 42, $modifier = 15) {
       $rgba  = imagecolorat($cloud, $x, $y);
       $alpha = ($rgba & 0x7F000000) >> 24;
       if ($alpha === 127) continue;
-      // update color
-      $a = map($alpha, [0, 127], [0, 255]);
-      $r = 255 - $a;
-      $g = 0;
-      $b = $a;
-      $color = imagecolorallocatealpha($cloud, $r, $g, $b, $alpha);
+      // get pixel from the palette
+      $alpha = map($alpha, [0, 127], [0, 255]);
+      $rgba  = imagecolorat($palette, $alpha, 0);
+      $r     = ($rgba >> 16) & 0xFF;
+      $g     = ($rgba >> 8) & 0xFF;
+      $b     = $rgba & 0xFF;
+      // update the color
+      $color = imagecolorallocatealpha($cloud, $r, $g, $b, $cloud_alpha);
       imagesetpixel($cloud, $x, $y, $color);
     }
   }
